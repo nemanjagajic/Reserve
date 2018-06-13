@@ -1,9 +1,6 @@
 package app.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -16,8 +13,22 @@ public class User {
     private String phone;
     private String password;
 
+    public User() {
+        // Empty constructor
+    }
+
+    public User(String username, String name, String lastName, String email, String phone, String password) {
+        this.username = username;
+        this.name = name;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
+        this.password = password;
+    }
+
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     public Integer getId() {
         return id;
     }

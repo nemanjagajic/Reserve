@@ -16,7 +16,6 @@
 
         <!-- CSS -->
         <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
-        <link rel="stylesheet" type="text/css" href="/vendors/css/ionicons.css">
         <link rel="stylesheet" type="text/css" href="/vendors/css/animate.css">
     </head>
 
@@ -40,7 +39,7 @@
                 <video src="/resources/video/background-video.mp4" autoplay muted loop></video>
 
                 <!-- Header text -->
-                <div class="header-text">
+                <div class="header-text animated fadeIn">
                     Welcome to Reserve
                     <div class="sub-text">
                         the easiest way to make a restaurant reservation
@@ -54,38 +53,56 @@
             <c:if test="${param.register != null}">
                 <style>
                     .home {
-                        background: linear-gradient(rgba(51, 51, 51, 0.7), rgba(51, 51, 51, 0.7)), url(resources/imgs/stars.jpg);
-                        background-size: cover;
+                        background: #262626;
                     }
                 </style>
                 <!-- Header text -->
                 <div class="header-text">
-                    <h2>Register</h2>
-                    <!-- Contact form -->
-                    <form class="register-form" action="/user/registerUser" method="post">
-                        <div class="form-group">
-                            <input class="form-control" name="username" placeholder="Username">
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" name="name" placeholder="Name">
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" name="lastName" placeholder="Last name">
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" name="email" placeholder="Email">
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" name="phone" placeholder="Phone number">
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" name="password" placeholder="Password" type="password">
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" name="rePassword" placeholder="Re-password" type="password">
-                        </div>
-                        <input type="submit" value="Register" class="button-transparent submit-button">
-                    </form>
+                    <c:choose>
+                        <c:when test="${not empty param.successfullyRegistered}">
+                            <c:choose>
+                                <c:when test="${param.successfullyRegistered}">
+                                    <div class="registration-message-text  animated fadeIn">
+                                        Successfully registered!
+                                    </div>
+                                    <a href="index.jsp?login" class="logo-button button-dark  animated fadeIn">Login</a>
+                                </c:when>
+                                <c:otherwise>
+                                    <div class="registration-failed-message-text animated fadeIn">
+                                        Username or email already exists<br>please register again with a different one
+                                    </div>
+                                    <a onclick="goBack()" class="logo-button button-dark  animated fadeIn"><ion-icon class="arrow-back" name="arrow-back"></ion-icon> Register</a>
+                                </c:otherwise>
+                            </c:choose>
+                        </c:when>
+                        <c:otherwise>
+                            <h2>Register</h2>
+                            <!-- Contact form -->
+                            <form class="register-form" action="${pageContext.request.contextPath}/user/register" method="post">
+                                <div class="form-group">
+                                    <input class="form-control" name="username" placeholder="Username" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" name="name" placeholder="Name" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" name="lastName" placeholder="Last name" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" name="email" placeholder="Email" required="required" type="email"
+                                           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" name="phone" placeholder="Phone number" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" name="password" placeholder="Password" type="password" required="required"
+                                           pattern=".{8,}" title="Password must contain 8 or more characters">
+                                </div>
+                                <input type="submit" value="Register" class="button-transparent submit-button animated fadeIn">
+                            </form>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
             </c:if>
 
@@ -93,30 +110,42 @@
             <c:if test="${param.login != null}">
                 <style>
                     .home {
-                        background: linear-gradient(rgba(51, 51, 51, 0.7), rgba(51, 51, 51, 0.7)), url(resources/imgs/stars.jpg);
-                        background-size: cover;
+                        background: #262626;
                     }
                 </style>
                 <!-- Header text -->
                 <div class="header-text">
-                    <c:if test="${successfullyRegistered != null}">
-                        <div class="registration-message-text">
-                            Successfully registered!
+                    <c:if test="${param.loginFailed == 1}">
+                        <div class="registration-failed-message-text animated fadeIn">
+                            Username doesn't exist
+                        </div>
+                    </c:if>
+                    <c:if test="${param.loginFailed == 2}">
+                        <div class="registration-failed-message-text animated fadeIn">
+                            Incorrect password
                         </div>
                     </c:if>
                     <h2>Login</h2>
                     <!-- Contact form -->
-                    <form class="register-form">
+                    <form class="register-form" action="${pageContext.request.contextPath}/user/login" method="post">
                         <div class="form-group">
-                            <input class="form-control" name="usernameLogin" placeholder="Username">
+                            <input class="form-control" name="username" placeholder="Username" required="required">
                         </div>
                         <div class="form-group">
-                            <input class="form-control" name="passwordLogin" placeholder="Password">
+                            <input class="form-control" name="password" type="password" placeholder="Password" required="required"
+                                   pattern=".{8,}" title="Password must contain 8 or more characters">
                         </div>
-                        <input type="submit" value="Log in" class="button-transparent submit-button">
+                        <input type="submit" value="Log in" class="button-transparent submit-button animated fadeIn">
                     </form>
                 </div>
             </c:if>
         </div>
+
+        <script src="https://unpkg.com/ionicons@4.1.2/dist/ionicons.js"></script>
+        <script>
+            function goBack() {
+                window.history.back();
+            }
+        </script>
     </body>
 </html>

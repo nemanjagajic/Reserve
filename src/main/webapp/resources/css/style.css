@@ -23,7 +23,7 @@ h2 {
     text-transform: uppercase;
     letter-spacing: 4px;
     word-spacing: 4px;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
     color: #e6e6e6;
 }
 
@@ -253,9 +253,13 @@ nav {
 
 /* ---------- Register form ---------- */
 .register-form {
-    width: 20%;
+    width: 350px;
     display: block;
     margin: auto;
+}
+
+.field-error {
+    background-color: #ffcccc;
 }
 
 #message {
@@ -264,9 +268,21 @@ nav {
     height: 100px;
 }
 
+.arrow-back {
+    font-size: 10px;
+}
+
 /* ---------- Login form ---------- */
 .registration-message-text {
     font-size: 18px;
+    word-spacing: 2px;
     color: #64FFDA;
+    margin-bottom: 40px;
+}
+
+.registration-failed-message-text {
+    font-size: 18px;
+    word-spacing: 2px;
+    color: #ff8080;
     margin-bottom: 40px;
 }

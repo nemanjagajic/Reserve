@@ -1,0 +1,272 @@
+/* ---------------------------------------- */
+/* MAIN */
+/* ---------------------------------------- */
+html, body {
+    font-family: "Lato", sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    color: #e6e6e6;
+}
+
+/* ---------------------------------------- */
+/* REUSABLE */
+/* ---------------------------------------- */
+/*
+yellow color: #FFD602
+ */
+.section {
+    padding: 0 20px 120px 20px;
+}
+
+h2 {
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    word-spacing: 4px;
+    margin-bottom: 50px;
+    color: #e6e6e6;
+}
+
+h2:after {
+    display: block;
+    content: "";
+    width: 100px;
+    height: 2px;
+    background-color: #FFD602;
+    margin: 20px auto;
+}
+
+/* ---------- Underline From Center ---------- */
+.hvr-underline-from-center {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.hvr-underline-from-center:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 50%;
+    right: 50%;
+    bottom: 0;
+    background: #FFD602;
+    height: 2px;
+    -webkit-transition-property: left, right;
+    transition-property: left, right;
+    -webkit-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+}
+
+.hvr-underline-from-center:hover:before, .hvr-underline-from-center:focus:before, .hvr-underline-from-center:active:before {
+    left: 0;
+    right: 0;
+}
+
+.logo-button {
+    display: block;
+    margin: 20px auto;
+    width: 220px;
+    height: 60px;
+}
+
+.button-dark {
+    color: #FFD602;
+    border: 1px solid rgba(51, 51, 51, 0.7);
+    background: rgba(51, 51, 51, 0.7);
+    border-radius: 10px;
+    padding: 17px;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    word-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: inset 0 0 0 0 #e6e6e6;
+    -webkit-transition: all ease 0.5s;
+    -moz-transition: all ease 0.5s;
+    transition: all ease 0.5s;
+}
+.button-dark:hover {
+    background-color: rgba(255, 214, 2, 0.8);
+    color: #333;
+    border: 1px solid rgba(255, 214, 2, 0.8);
+}
+
+.button-transparent {
+    color: #FFD602;
+    border: 1px solid #FFD602;
+    background: transparent;
+    border-radius: 10px;
+    padding: 17px;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    word-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: inset 0 0 0 0 #e6e6e6;
+    -webkit-transition: all ease 0.5s;
+    -moz-transition: all ease 0.5s;
+    transition: all ease 0.5s;
+}
+.button-transparent:hover {
+    background-color: rgba(255, 214, 2, 0.8);
+    color: #333;
+}
+
+.submit-button {
+    margin-top: 40px;
+}
+
+/* ---------------------------------------- */
+/* HOME SECTION */
+/* ---------------------------------------- */
+.home {
+    height: 100vh;
+    background-color: rgba(21, 21, 21, 0.65);
+}
+
+/* ---------- Video ---------- */
+.home video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    transform: translate(-50%, -50%);
+}
+
+.container-fluid {
+    padding: 0;
+}
+
+/* ---------- Navbar ---------- */
+nav {
+    padding-top: 40px;
+    background-color: transparent !important;
+    border-color: transparent !important;
+    width: 542.1px;
+    margin: 0 auto;
+    font-size: 130%;
+}
+
+.navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.active>a:focus,
+.navbar-default .navbar-nav>.active>a:hover {
+    background-color: transparent !important;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: #e6e6e6;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+    color: #e6e6e6;
+}
+
+.navbar-default .navbar-nav>.active>a {
+    color: #FFD602;
+}
+
+.navbar-default .navbar-nav>.active>a:hover {
+    color: #FFD602;
+}
+
+.nav>li>a {
+    padding: 25px 40px;
+}
+
+.button-confirm {
+    color: #FFD602;
+    background: #212121;
+    border: 1px solid #FFD602;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: inset 0 0 0 0 #e6e6e6;
+    -webkit-transition: all ease 0.5s;
+    -moz-transition: all ease 0.5s;
+    transition: all ease 0.5s;
+    width: 120px;
+    height: 50px;
+}
+.button-confirm:hover {
+    box-shadow: inset 0 0 220px 0 #FFD602;
+    color: #e6e6e6;
+    border: 1px solid #e6e6e6;
+}
+
+/* ---------- Header text ---------- */
+.header-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3.5vw;
+    font-weight: 300;
+    color: #e6e6e6;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    word-spacing: 10px;
+    width: 100%;
+    text-align: center;
+    display: inline-block;
+}
+
+.header-text a,
+.header-text a:visited {
+    text-decoration: none;
+    color: #FFD602;
+    display: inline-block;
+    -webkit-transition: all ease 0.5s;
+    -moz-transition: all ease 0.5s;
+    transition: all ease 0.5s;
+}
+
+.header-text a:hover {
+    color: #333;
+}
+
+.sub-text {
+    font-size: 1.7vw;
+    text-align: center;
+    letter-spacing: 2px;
+    word-spacing: 2px;
+    color: #FFD602;
+    margin-bottom: 60px;
+}
+
+/* ---------- Register form ---------- */
+.register-form {
+    width: 20%;
+    display: block;
+    margin: auto;
+}
+
+#message {
+    max-width: 100%;
+    max-height: 300px;
+    height: 100px;
+}
+
+/* ---------- Login form ---------- */
+.registration-message-text {
+    font-size: 18px;
+    color: #64FFDA;
+    margin-bottom: 40px;
+}

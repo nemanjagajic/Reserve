@@ -11,9 +11,6 @@ html, body {
 /* ---------------------------------------- */
 /* REUSABLE */
 /* ---------------------------------------- */
-/*
-yellow color: #FFD602
- */
 .section {
     padding: 0 20px 120px 20px;
 }
@@ -121,6 +118,10 @@ h2:after {
 .button-transparent:hover {
     background-color: rgba(255, 214, 2, 0.8);
     color: #333;
+}
+
+.button-transparent:focus {
+    outline: none;
 }
 
 .submit-button {
@@ -286,3 +287,44 @@ nav {
     color: #ff8080;
     margin-bottom: 40px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

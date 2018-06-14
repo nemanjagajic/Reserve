@@ -15,7 +15,7 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
 
         <!-- CSS -->
-        <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
+        <link rel="stylesheet" type="text/css" href="/resources/css/home.css">
         <link rel="stylesheet" type="text/css" href="/vendors/css/animate.css">
     </head>
 
@@ -28,7 +28,7 @@
                 <nav class="navbar navbar-default">
                     <ul class="nav navbar-nav">
                         <li class="active"><a class="hvr-underline-from-center" href="index.jsp">Home</a></li>
-                        <li><a class="hvr-underline-from-center" href="#restaurants">Restaurants</a></li>
+                        <li><a class="hvr-underline-from-center" href="restaurants.jsp">Restaurants</a></li>
                         <li><a class="hvr-underline-from-center" href="#about-us">About us</a></li>
                     </ul>
                 </nav>
@@ -71,7 +71,7 @@
                                     <div class="registration-failed-message-text animated fadeIn">
                                         Username or email already exists<br>please register again with a different one
                                     </div>
-                                    <a onclick="goBack()" class="logo-button button-dark  animated fadeIn"><ion-icon class="arrow-back" name="arrow-back"></ion-icon> Register</a>
+                                    <a onclick="goBack()" class="logo-button button-dark  animated fadeIn">Back to register</a>
                                 </c:otherwise>
                             </c:choose>
                         </c:when>
@@ -129,7 +129,7 @@
                     <!-- Contact form -->
                     <form class="register-form" action="${pageContext.request.contextPath}/user/login" method="post">
                         <div class="form-group">
-                            <input class="form-control" name="username" placeholder="Username" required="required">
+                            <input class="form-control" name="username" placeholder="Username" required="required" value="${username}">
                         </div>
                         <div class="form-group">
                             <input class="form-control" name="password" type="password" placeholder="Password" required="required"
@@ -141,7 +141,6 @@
             </c:if>
         </div>
 
-        <script src="https://unpkg.com/ionicons@4.1.2/dist/ionicons.js"></script>
         <script>
             function goBack() {
                 window.history.back();

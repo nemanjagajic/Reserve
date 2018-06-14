@@ -44,7 +44,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(Model m, HttpServletRequest request, RedirectAttributes ra) {
+    public String login(HttpServletRequest request, RedirectAttributes ra) {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
@@ -52,12 +52,21 @@ public class UserController {
         if (user == null) {
             ra.addAttribute("login", true);
             ra.addAttribute("loginFailed", 1); // 1 -> username not found
+            request.getSession().setAttribute("username", username);
         } else if (!user.getPassword().equals(password)) {
             ra.addAttribute("login", true);
             ra.addAttribute("loginFailed", 2); // 2 -> incorrect password
+            request.getSession().setAttribute("username", username);
+        } else {
+            request.getSession().setAttribute("username", username);
+            return "redirect:/restaurants.jsp";
         }
+        return "redirect:/index.jsp";
+    }
 
-        System.out.println("Successfully logged in as " + username + ", pass: " + password);
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logout(HttpServletRequest request) {
+        request.getSession().invalidate();
         return "redirect:/index.jsp";
     }
 }

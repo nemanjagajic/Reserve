@@ -35,7 +35,7 @@
                             <span class="caret"></span></button>
                         <ul class="dropdown-menu">
                             <c:choose>
-                                <c:when test="${not empty username}">
+                                <c:when test="${not empty username && successfullyLoggedIn == true}">
                                     <li class="username-logout">${username}</li>
                                     <li><a href="restaurants.jsp">My profile</a></li>
                                     <li><a href="${pageContext.request.contextPath}/user/logout">Logout</a></li>

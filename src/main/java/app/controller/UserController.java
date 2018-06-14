@@ -58,6 +58,7 @@ public class UserController {
             ra.addAttribute("loginFailed", 2); // 2 -> incorrect password
             request.getSession().setAttribute("username", username);
         } else {
+            request.getSession().setAttribute("successfullyLoggedIn", true);
             request.getSession().setAttribute("username", username);
             return "redirect:/restaurants.jsp";
         }

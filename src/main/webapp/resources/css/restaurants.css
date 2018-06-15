@@ -33,8 +33,8 @@ h4 {
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     border-radius: 0;
-    background-color: #262626;
-    border-color: #262626;
+    background-color: #333;
+    border-color: #333;
 }
 
 .navbar-inverse .navbar-nav>li>a {
@@ -54,8 +54,8 @@ h4 {
 
 .logout button {
     margin-top: 5px;
-    background-color: #262626;
-    border-color: #262626;
+    background-color: #333;
+    border-color: #333;
     font-size: 20px;
     -webkit-transition: all ease 0.5s;
     -moz-transition: all ease 0.5s;
@@ -65,19 +65,19 @@ h4 {
 .logout button:hover,
 .logout button:active,
 .logout button:visited {
-    background-color: #262626;
-    border-color: #262626;
+    background-color: #333;
+    border-color: #333;
     color: #FFD602;
 }
 
 .dropdown-toggle:active, .open .dropdown-toggle {
-    background-color: #262626 !important;
-    border-color: #262626 !important;
+    background-color: #333 !important;
+    border-color: #333 !important;
 }
 
 .btn-primary.focus, .btn-primary:focus {
-    background-color: #262626;
-    border-color: #262626;
+    background-color: #333;
+    border-color: #333;
 }
 
 .btn:focus,.btn:active {

@@ -1,5 +1,7 @@
+<%@ page import="app.controller.RestaurantController" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <html>
     <!-- HEAD -->
     <head>
@@ -9,6 +11,9 @@
 
         <!-- Bootstrap -->
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+        <!-- Font Awesome Icon Library -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <!-- VENDORS CSS -->
         <link href='https://fonts.googleapis.com/css?family=Roboto:400,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
@@ -147,6 +152,36 @@
                 <!-- Restaurants -->
                 <div class="col-sm-9">
                     <h2>Available restaurants</h2>
+                    <div class="restaurant row">
+                        <div class="col-sm-3">
+                            <img src="resources/imgs/camelot.jpg">
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="restaurant-header">
+                                Camelot
+                            </div>
+                            <div class="stars">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                            </div>
+
+                            <div class="info">
+                                <ion-icon name="pin"></ion-icon> Sremska 9, Novi Sad 21000<br>
+                                <ion-icon name="time"></ion-icon> 8AM - 11PM<br>
+                                <ion-icon name="phone-portrait"></ion-icon> +381528095
+                            </div>
+                        </div>
+                        <div class="col-sm-5">
+                            <div class="about-label-green">Promo codes</div>
+                            <div class="about-label-gray">Pet friendly</div>
+                            <div class="about">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

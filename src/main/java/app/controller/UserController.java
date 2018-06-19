@@ -21,6 +21,8 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
+    public static User loggedUser;
+
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String register(User user, HttpServletRequest request, RedirectAttributes ra) {
         ra.addAttribute("register", true);
@@ -60,6 +62,7 @@ public class UserController {
         } else {
             request.getSession().setAttribute("successfullyLoggedIn", true);
             request.getSession().setAttribute("username", username);
+            loggedUser = user;
             return "redirect:/restaurants.jsp";
         }
         return "redirect:/index.jsp";
@@ -68,6 +71,7 @@ public class UserController {
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logout(HttpServletRequest request) {
         request.getSession().invalidate();
+        loggedUser = null;
         return "redirect:/index.jsp";
     }
 }

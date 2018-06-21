@@ -155,7 +155,8 @@
                 <div class="col-sm-9">
                     <h2>Available restaurants</h2>
                     <c:forEach items="${restaurants}" var="restaurant">
-                        <div class="restaurant row animated fadeIn">
+                        <div class="restaurant row animated fadeIn" data-toggle="modal" data-target="#restaurantModal"
+                             onclick="setRestaurant({name:'${restaurant.name}', image: '${restaurant.image}'});">
                             <div class="col-sm-3">
                                 <img src="${restaurant.image}">
                             </div>
@@ -190,6 +191,36 @@
                             </div>
                         </div>
                     </c:forEach>
+
+                    <!-- Modal -->
+                    <div id="restaurantModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 id="modalRestaurantTitle" class="modal-title"></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <img id="modalRestaurantImage" src="">
+                                    <button id="reservationButton" class="show-button" onclick="showReservationDiv()">Make reservation</button>
+                                    <button id="showMenuButton" class="show-button">Show menu</button>
+                                    <button id="showCommentsButton "class="show-button">Show comments</button>
+                                </div>
+
+                                <!-- Reservation -->
+                                <div id="modalReservationDiv" class="animated fadeIn">
+                                    <h3>Reservation</h3>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -198,6 +229,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script>
+            var reservationOpen = false;
+
             $(document).ready(function(){
                 $('[data-toggle="popover"]').popover();
             });
@@ -211,6 +244,23 @@
 
                 if (${empty restaurants}) {
                     window.location.reload();
+                }
+            }
+
+            function setRestaurant(restaurant) {
+                document.getElementById("modalRestaurantTitle").innerHTML = restaurant.name;
+                document.getElementById("modalRestaurantImage").src = restaurant.image;
+            }
+
+            function showReservationDiv() {
+                if (!reservationOpen) {
+                    document.getElementById('modalReservationDiv').style.display = "block";
+                    document.getElementById('reservationButton').style.background = "#333";
+                    reservationOpen = true;
+                } else {
+                    document.getElementById('modalReservationDiv').style.display = "none";
+                    document.getElementById('reservationButton').style.background = "#555";
+                    reservationOpen = false;
                 }
             }
         </script>

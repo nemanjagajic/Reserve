@@ -12,18 +12,20 @@ public class User {
     private String email;
     private String phone;
     private String password;
+    private String role;
 
     public User() {
         // Empty constructor
     }
 
-    public User(String username, String name, String lastName, String email, String phone, String password) {
+    public User(String username, String name, String lastName, String email, String phone, String password, String role) {
         this.username = username;
         this.name = name;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
         this.password = password;
+        this.role = role;
     }
 
     @Id
@@ -95,6 +97,16 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Basic
+    @Column(name = "role")
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     @Override

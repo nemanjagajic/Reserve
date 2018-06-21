@@ -1,4 +1,3 @@
-<%@ page import="app.controller.RestaurantController" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
@@ -25,7 +24,7 @@
     </head>
 
     <!-- BODY -->
-    <body class="restaurants">
+    <body class="restaurants" onload="getAllRestaurants()">
         <!-- Navbar -->
         <nav class="navbar navbar-inverse sticky">
             <div class="container">
@@ -33,6 +32,9 @@
                     <li><a href="index.jsp">Home</a></li>
                     <li class="selected-nav-item"><a href="restaurants.jsp">Restaurants</a></li>
                     <li><a href="#">About us</a></li>
+                    <c:if test="${not empty admin}">
+                        <li><a href="adminPanel.jsp">Admin panel</a></li>
+                    </c:if>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <div class="dropdown logout">
@@ -152,36 +154,42 @@
                 <!-- Restaurants -->
                 <div class="col-sm-9">
                     <h2>Available restaurants</h2>
-                    <div class="restaurant row">
-                        <div class="col-sm-3">
-                            <img src="resources/imgs/camelot.jpg">
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="restaurant-header">
-                                Camelot
+                    <c:forEach items="${restaurants}" var="restaurant">
+                        <div class="restaurant row animated fadeIn">
+                            <div class="col-sm-3">
+                                <img src="${restaurant.imageLink}">
                             </div>
-                            <div class="stars">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                            </div>
+                            <div class="col-sm-4">
+                                <div class="restaurant-header">
+                                    ${restaurant.name}
+                                </div>
+                                <div class="stars">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                </div>
 
-                            <div class="info">
-                                <ion-icon name="pin"></ion-icon> Sremska 9, Novi Sad 21000<br>
-                                <ion-icon name="time"></ion-icon> 8AM - 11PM<br>
-                                <ion-icon name="phone-portrait"></ion-icon> +381528095
+                                <div class="info">
+                                    <ion-icon name="pin"></ion-icon> ${restaurant.location}<br>
+                                    <ion-icon name="time"></ion-icon> ${restaurant.workingHours}<br>
+                                    <ion-icon name="phone-portrait"></ion-icon> ${restaurant.number}
+                                </div>
+                            </div>
+                            <div class="col-sm-5">
+                                <c:if test="${restaurant.promoCode != 0}">
+                                    <div class="about-label-green">Promo code</div>
+                                </c:if>
+                                <c:if test="${not empty restaurant.additionalLabel}">
+                                    <div class="about-label-gray">${restaurant.additionalLabel}</div>
+                                </c:if>
+                                <div class="about">
+                                        ${restaurant.about}
+                                </div>
                             </div>
                         </div>
-                        <div class="col-sm-5">
-                            <div class="about-label-green">Promo codes</div>
-                            <div class="about-label-gray">Pet friendly</div>
-                            <div class="about">
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-                            </div>
-                        </div>
-                    </div>
+                    </c:forEach>
                 </div>
             </div>
         </div>
@@ -193,6 +201,18 @@
             $(document).ready(function(){
                 $('[data-toggle="popover"]').popover();
             });
+
+            function getAllRestaurants() {
+                $.ajax({
+                    async: false,
+                    url: "/getAllRestaurants",
+                    type: "GET",
+                });
+
+                if (${empty restaurants}) {
+                    window.location.reload();
+                }
+            }
         </script>
     </body>
 </html>

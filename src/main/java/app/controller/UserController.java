@@ -36,7 +36,8 @@ public class UserController {
                     user.getLastName(),
                     user.getEmail(),
                     user.getPhone(),
-                    user.getPassword()
+                    user.getPassword(),
+                    user.getRole()
             );
             if (userRepository.save(userToAdd) != null) {
                 ra.addAttribute("successfullyRegistered", true);
@@ -62,6 +63,9 @@ public class UserController {
         } else {
             request.getSession().setAttribute("successfullyLoggedIn", true);
             request.getSession().setAttribute("username", username);
+            if (user.getRole() != null && user.getRole().equals("admin")) {
+                request.getSession().setAttribute("admin", true);
+            }
             loggedUser = user;
             return "redirect:/restaurants.jsp";
         }

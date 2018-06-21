@@ -62,8 +62,52 @@
     <h2>Admin panel</h2>
 
     <div class="admin-buttons">
-        <button class="adminPanelButton">Add restaurant</button>
-        <button class="adminPanelButton">Delete restaurant</button>
+        <button class="admin-panel-button" type="button" data-toggle="modal" data-target="#addRestaurantModal">Add restaurant</button>
+        <button class="admin-panel-button">Delete restaurant</button>
+    </div>
+
+    <!-- Modal -->
+    <div id="addRestaurantModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Restaurant form</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="add-restaurant-form" action="${pageContext.request.contextPath}/restaurant/add" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <input class="form-control" name="name" placeholder="Name*" required="required">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" name="location" placeholder="Location*" required="required">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" name="workingHours" placeholder="Working hours*" required="required">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" name="number" placeholder="Phone number*" required="required">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" name="promoCode" placeholder="Has promo codes (1 if yes, 0 otherwise)" type="number">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" name="additionalLabel" placeholder="Additional label (e.g. Pet friendly)">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" value="choose image" type="file" name="file" accept="image/*">
+                        </div>
+                        <input type="submit" value="Add restaurant" class="submit-button">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>
 

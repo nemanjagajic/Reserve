@@ -14,7 +14,7 @@ public class Restaurant {
     private String about;
     private Byte promoCode;
     private String additionalLabel;
-    private String imageLink;
+    private String image;
 
     @Id
     @Column(name = "id")
@@ -108,13 +108,13 @@ public class Restaurant {
     }
 
     @Basic
-    @Column(name = "image_link")
-    public String getImageLink() {
-        return imageLink;
+    @Column(name = "image")
+    public String getImage() {
+        return image;
     }
 
-    public void setImageLink(String imageLink) {
-        this.imageLink = imageLink;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     @Override
@@ -131,12 +131,28 @@ public class Restaurant {
                 Objects.equals(about, that.about) &&
                 Objects.equals(promoCode, that.promoCode) &&
                 Objects.equals(additionalLabel, that.additionalLabel) &&
-                Objects.equals(imageLink, that.imageLink);
+                Objects.equals(image, that.image);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, name, location, workingHours, number, stars, about, promoCode, additionalLabel, imageLink);
+        return Objects.hash(id, name, location, workingHours, number, stars, about, promoCode, additionalLabel, image);
+    }
+
+    @Override
+    public String toString() {
+        return "Restaurant{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", location='" + location + '\'' +
+                ", workingHours='" + workingHours + '\'' +
+                ", number='" + number + '\'' +
+                ", stars=" + stars +
+                ", about='" + about + '\'' +
+                ", promoCode=" + promoCode +
+                ", additionalLabel='" + additionalLabel + '\'' +
+                ", image='" + image + '\'' +
+                '}';
     }
 }

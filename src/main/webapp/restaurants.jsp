@@ -157,7 +157,7 @@
                     <c:forEach items="${restaurants}" var="restaurant">
                         <div class="restaurant row animated fadeIn">
                             <div class="col-sm-3">
-                                <img src="${restaurant.imageLink}">
+                                <img src="${restaurant.image}">
                             </div>
                             <div class="col-sm-4">
                                 <div class="restaurant-header">
@@ -205,7 +205,7 @@
             function getAllRestaurants() {
                 $.ajax({
                     async: false,
-                    url: "/getAllRestaurants",
+                    url: "/restaurant/getAll",
                     type: "GET",
                 });
 

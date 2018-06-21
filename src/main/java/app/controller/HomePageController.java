@@ -11,6 +11,6 @@ public class HomePageController {
 
     @GetMapping
     String getIndexView(Model model) {
-        return "index";
+        return "index.jsp";
     }
 }

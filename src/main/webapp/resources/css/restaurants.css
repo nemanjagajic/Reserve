@@ -174,7 +174,7 @@ h4 {
 .restaurant .about-label-gray {
     display: inline-block;
     text-align: center;
-    width: 90px;
+    width: 100px;
     height: 20px;
     background: #737373;
     color: white;
@@ -190,7 +190,7 @@ h4 {
 /* ---------------------------------------- */
 /* ADMIN PANEL */
 /* ---------------------------------------- */
-.adminPanelButton {
+.admin-panel-button {
     display: inline-block;
     width: 180px;
     height: 60px;
@@ -209,11 +209,73 @@ h4 {
     transition: all ease 0.5s;
 }
 
-.adminPanelButton:hover {
+.admin-panel-button:hover {
     background-color: #333;
+}
+
+.admin-panel-button:focus {
+    outline: none;
 }
 
 .admin-buttons {
     margin: auto;
     width: 434px;
+}
+
+/* ---------- Modal ---------- */
+.modal {
+    text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+    .modal:before {
+        display: inline-block;
+        vertical-align: middle;
+        content: " ";
+        height: 100%;
+    }
+}
+
+.modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.modal-title {
+    color: #737373;
+}
+
+.add-restaurant-form {
+    width: 350px;
+    display: block;
+    margin: auto;
+}
+
+.add-restaurant-form .submit-button {
+    display: block;
+    margin: auto;
+}
+
+.submit-button {
+    display: inline-block;
+    width: 150px;
+    height: 50px;
+    font-size: 16px;
+    margin: 0 10px;
+    color: #737373;
+    border: 1px solid #FFD602;
+    background: #FFD602;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: inset 0 0 0 0 #e6e6e6;
+    -webkit-transition: all ease 0.5s;
+    -moz-transition: all ease 0.5s;
+    transition: all ease 0.5s;
+}
+
+.submit-button:hover {
+    background-color: #ffdd33;
+    border-color: #ffdd33;
 }

@@ -1,6 +1,7 @@
 package app.controller;
 
 import app.model.User;
+import app.repository.RestaurantRepository;
 import app.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,9 @@ public class UserController {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    RestaurantRepository restaurantRepository;
 
     public static User loggedUser;
 
@@ -63,6 +67,7 @@ public class UserController {
         } else {
             request.getSession().setAttribute("successfullyLoggedIn", true);
             request.getSession().setAttribute("username", username);
+            request.getSession().setAttribute("restaurants", restaurantRepository.findAll());
             if (user.getRole() != null && user.getRole().equals("admin")) {
                 request.getSession().setAttribute("admin", true);
             }
@@ -77,5 +82,11 @@ public class UserController {
         request.getSession().invalidate();
         loggedUser = null;
         return "redirect:/index.jsp";
+    }
+
+    @RequestMapping(value = "/loadRestaurants", method = RequestMethod.GET)
+    public String loadRestaurants(HttpServletRequest request) {
+        request.getSession().setAttribute("restaurants", restaurantRepository.findAll());
+        return "redirect:/restaurants.jsp";
     }
 }

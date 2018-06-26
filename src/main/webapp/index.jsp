@@ -28,7 +28,7 @@
                 <nav class="navbar navbar-default">
                     <ul class="nav navbar-nav">
                         <li class="active"><a class="hvr-underline-from-center" href="index.jsp">Home</a></li>
-                        <li><a class="hvr-underline-from-center" href="restaurants.jsp">Restaurants</a></li>
+                        <li><a class="hvr-underline-from-center" href=<c:url value="/user/loadRestaurants"/>>Restaurants</a></li>
                         <li><a class="hvr-underline-from-center" href="#about-us">About us</a></li>
                     </ul>
                 </nav>

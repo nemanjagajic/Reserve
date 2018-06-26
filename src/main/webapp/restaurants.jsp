@@ -24,13 +24,13 @@
     </head>
 
     <!-- BODY -->
-    <body class="restaurants" onload="getAllRestaurants()">
+    <body class="restaurants">
         <!-- Navbar -->
         <nav class="navbar navbar-inverse sticky">
             <div class="container">
                 <ul class="nav navbar-nav">
                     <li><a href="index.jsp">Home</a></li>
-                    <li class="selected-nav-item"><a href="restaurants.jsp">Restaurants</a></li>
+                    <li class="selected-nav-item"><a href=<c:url value="/user/loadRestaurants"/>>Restaurants</a></li>
                     <li><a href="#">About us</a></li>
                     <c:if test="${not empty admin}">
                         <li><a href="adminPanel.jsp">Admin panel</a></li>
@@ -246,18 +246,6 @@
             $(document).ready(function(){
                 $('[data-toggle="popover"]').popover();
             });
-
-            function getAllRestaurants() {
-                $.ajax({
-                    async: false,
-                    url: "/restaurant/getAll",
-                    type: "GET",
-                });
-
-                if (${empty restaurants}) {
-                    window.location.reload();
-                }
-            }
 
             function setRestaurant(restaurant) {
                 document.getElementById("modalRestaurantTitle").innerHTML = restaurant.name;

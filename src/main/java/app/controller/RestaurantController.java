@@ -4,7 +4,6 @@ import app.model.Restaurant;
 import app.repository.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,7 +22,7 @@ import java.util.List;
 public class RestaurantController {
 
     @Autowired
-    RestaurantRepository restaurantRepository;
+    private RestaurantRepository restaurantRepository;
 
     private static final String IMAGE_FOLDER = "C:\\Users\\Lenovo\\Desktop\\IDEA workspace\\Reserve\\src\\main\\webapp\\resources\\imgs\\";
 
@@ -67,6 +66,15 @@ public class RestaurantController {
             ra.addAttribute("successfullyAddedRestaurant", false);
         }
 
+        return "redirect:/adminPanel.jsp";
+    }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    public String delete(HttpServletRequest request, RedirectAttributes ra) {
+        restaurantRepository.delete(Integer.parseInt(request.getParameter("restaurantId")));
+        List<Restaurant> restaurants = restaurantRepository.findAll();
+        request.getSession().setAttribute("restaurants", restaurants);
+        ra.addAttribute("showTable", true);
         return "redirect:/adminPanel.jsp";
     }
 

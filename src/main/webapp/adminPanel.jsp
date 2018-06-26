@@ -150,11 +150,36 @@
                     <td>${restaurant.workingHours}</td>
                     <td>${restaurant.number}</td>
                     <td>${restaurant.stars}</td>
-                    <td><ion-icon name="trash"></ion-icon></td>
+                    <td><button type="button" class="delete-button" data-toggle="modal" data-target="#myModal" onclick="setClickedRestaurant(${restaurant.id})"><ion-icon name="trash"></ion-icon></button></td>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
+
+        <!-- Delete dialog modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Delete restaurant</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p id="modalMessage">Are you sure you want to delete restaurant with id </p>
+                        <form action="/restaurant/delete" method="post">
+                            <input id="restaurantIdHiddenField" type="hidden" name="restaurantId">
+                            <input class="modal-confirm-button" type="submit" value="Yes">
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </c:if>
 </div>
 
@@ -166,6 +191,12 @@
     $(document).ready(function(){
         $('[data-toggle="popover"]').popover();
     });
+
+    function setClickedRestaurant(restaurantId) {
+        console.log("Called with id: " + restaurantId);
+        document.getElementById('restaurantIdHiddenField').value = restaurantId;
+        document.getElementById('modalMessage').innerText = "Are you sure you want to delete restaurant with id " + restaurantId;
+    }
 </script>
 </body>
 </html>

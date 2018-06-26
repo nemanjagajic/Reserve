@@ -156,7 +156,7 @@
                     <h2>Available restaurants</h2>
                     <c:forEach items="${restaurants}" var="restaurant">
                         <div class="restaurant row animated fadeIn" data-toggle="modal" data-target="#restaurantModal"
-                             onclick="setRestaurant({name:'${restaurant.name}', image: '${restaurant.image}'});">
+                             onclick="setRestaurant({name:'${restaurant.name}', image: '${restaurant.image}'}); clearReservationDiv()">
                             <div class="col-sm-3">
                                 <img src="${restaurant.image}">
                             </div>
@@ -213,7 +213,7 @@
                                 <div id="modalReservationDiv" class="animated fadeIn">
                                     <h3>Reservation</h3>
                                     <form class="modal-form" action="${pageContext.request.contextPath}/reservation/add" method="post">
-                                        <input id="formRestaurantId" type="hidden" name="restaurantId">
+                                        <input id="formRestaurantName" type="hidden" name="restaurantName">
                                         <div class="form-group">
                                             <input class="form-control" type="text" name="numberOfPersons" placeholder="Number of persons*">
                                         </div>
@@ -256,9 +256,17 @@
                 if (!reservationOpen) {
                     document.getElementById('modalReservationDiv').style.display = "block";
                     document.getElementById('reservationButton').style.background = "#333";
-                    document.getElementById('formRestaurantId').value = document.getElementById('modalRestaurantTitle').innerHTML;
+                    document.getElementById('formRestaurantName').value = document.getElementById('modalRestaurantTitle').innerHTML;
                     reservationOpen = true;
                 } else {
+                    document.getElementById('modalReservationDiv').style.display = "none";
+                    document.getElementById('reservationButton').style.background = "#555";
+                    reservationOpen = false;
+                }
+            }
+
+            function clearReservationDiv() {
+                if (reservationOpen) {
                     document.getElementById('modalReservationDiv').style.display = "none";
                     document.getElementById('reservationButton').style.background = "#555";
                     reservationOpen = false;

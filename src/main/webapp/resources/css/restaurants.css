@@ -387,3 +387,45 @@ h4 {
     background-color: #ffdd33;
     border-color: #ffdd33;
 }
+
+.delete-button {
+    background-color: transparent;
+    border: none;
+    -webkit-transition: color 0.5s;
+    -moz-transition: color 0.5s;
+    transition: color 0.5s;
+}
+
+.delete-button:hover {
+    color: #333;
+}
+
+.delete-button:focus {
+    outline: none;
+}
+
+.modal-confirm-button {
+    display: block;
+    margin: 0 auto -20px;
+    width: 70px;
+    height: 40px;
+    background-color: #555;
+    color: #FFF;
+    border: none;
+    border-radius: 5px;
+    -webkit-transition: background-color 0.5s;
+    -moz-transition: background-color 0.5s;
+    transition: background-color 0.5s;
+}
+
+.modal-confirm-button:hover {
+    background-color: #333;
+}
+
+.modal-confirm-button:focus {
+    outline: none;
+}
+
+#modalMessage {
+    text-align: center;
+}

@@ -15,10 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 public class ReservationController {
 
     @Autowired
-    ReservationRepository reservationRepository;
+    private ReservationRepository reservationRepository;
 
     @Autowired
-    RestaurantRepository restaurantRepository;
+    private RestaurantRepository restaurantRepository;
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String add(HttpServletRequest request) {
@@ -27,7 +27,7 @@ public class ReservationController {
                 Integer.parseInt(request.getParameter("numberOfPersons")),
                 Byte.parseByte("0"),
                 UserController.loggedUser,
-                restaurantRepository.getByName(request.getParameter("restaurantId"))
+                restaurantRepository.getByName(request.getParameter("restaurantName"))
         );
 
         reservationRepository.save(reservation);

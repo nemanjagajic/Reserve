@@ -16,7 +16,7 @@ public class Restaurant {
     private Byte promoCode;
     private String additionalLabel;
     private String image;
-    private Collection<Reservation> reservationsById;
+    private Collection<Reservation> reservations;
 
     @Id
     @Column(name = "id")
@@ -158,12 +158,12 @@ public class Restaurant {
                 '}';
     }
 
-    @OneToMany(mappedBy = "restaurantByRestaurantId")
-    public Collection<Reservation> getReservationsById() {
-        return reservationsById;
+    @OneToMany(mappedBy = "restaurant")
+    public Collection<Reservation> getReservations() {
+        return reservations;
     }
 
-    public void setReservationsById(Collection<Reservation> reservationsById) {
-        this.reservationsById = reservationsById;
+    public void setReservations(Collection<Reservation> reservationsById) {
+        this.reservations = reservationsById;
     }
 }

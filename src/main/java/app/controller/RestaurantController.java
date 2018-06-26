@@ -1,6 +1,7 @@
 package app.controller;
 
 import app.model.Restaurant;
+import app.repository.ReservationRepository;
 import app.repository.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.transaction.Transactional;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -19,10 +21,14 @@ import java.util.List;
 
 @Controller
 @RequestMapping(value = "/restaurant")
+@Transactional
 public class RestaurantController {
 
     @Autowired
     private RestaurantRepository restaurantRepository;
+
+    @Autowired
+    private ReservationRepository reservationRepository;
 
     private static final String IMAGE_FOLDER = "C:\\Users\\Lenovo\\Desktop\\IDEA workspace\\Reserve\\src\\main\\webapp\\resources\\imgs\\";
 
@@ -71,6 +77,7 @@ public class RestaurantController {
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public String delete(HttpServletRequest request, RedirectAttributes ra) {
+        reservationRepository.deleteAllByRestaurant(restaurantRepository.getById(Integer.parseInt(request.getParameter("restaurantId"))));
         restaurantRepository.delete(Integer.parseInt(request.getParameter("restaurantId")));
         List<Restaurant> restaurants = restaurantRepository.findAll();
         request.getSession().setAttribute("restaurants", restaurants);

@@ -9,19 +9,19 @@ public class Reservation {
     private String time;
     private Integer numberOfPersons;
     private Byte accepted;
-    private User userByUserId;
-    private Restaurant restaurantByRestaurantId;
+    private User user;
+    private Restaurant restaurant;
 
     public Reservation() {
 
     }
 
-    public Reservation(String time, Integer numberOfPersons, Byte accepted, User userByUserId, Restaurant restaurantByRestaurantId) {
+    public Reservation(String time, Integer numberOfPersons, Byte accepted, User user, Restaurant restaurant) {
         this.time = time;
         this.numberOfPersons = numberOfPersons;
         this.accepted = accepted;
-        this.userByUserId = userByUserId;
-        this.restaurantByRestaurantId = restaurantByRestaurantId;
+        this.user = user;
+        this.restaurant = restaurant;
     }
 
     @Id
@@ -84,21 +84,21 @@ public class Reservation {
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
-    public User getUserByUserId() {
-        return userByUserId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserByUserId(User userByUserId) {
-        this.userByUserId = userByUserId;
+    public void setUser(User userByUserId) {
+        this.user = userByUserId;
     }
 
     @ManyToOne
     @JoinColumn(name = "restaurant_id", referencedColumnName = "id", nullable = false)
-    public Restaurant getRestaurantByRestaurantId() {
-        return restaurantByRestaurantId;
+    public Restaurant getRestaurant() {
+        return restaurant;
     }
 
-    public void setRestaurantByRestaurantId(Restaurant restaurantByRestaurantId) {
-        this.restaurantByRestaurantId = restaurantByRestaurantId;
+    public void setRestaurant(Restaurant restaurantByRestaurantId) {
+        this.restaurant = restaurantByRestaurantId;
     }
 }

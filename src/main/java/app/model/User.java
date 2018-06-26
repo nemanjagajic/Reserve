@@ -14,7 +14,7 @@ public class User {
     private String phone;
     private String password;
     private String role;
-    private Collection<Reservation> reservationsById;
+    private Collection<Reservation> reservations;
 
     public User() {
         // Empty constructor
@@ -145,12 +145,12 @@ public class User {
                 '}';
     }
 
-    @OneToMany(mappedBy = "userByUserId")
-    public Collection<Reservation> getReservationsById() {
-        return reservationsById;
+    @OneToMany(mappedBy = "user")
+    public Collection<Reservation> getReservations() {
+        return reservations;
     }
 
-    public void setReservationsById(Collection<Reservation> reservationsById) {
-        this.reservationsById = reservationsById;
+    public void setReservations(Collection<Reservation> reservationsById) {
+        this.reservations = reservationsById;
     }
 }

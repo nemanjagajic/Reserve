@@ -30,7 +30,7 @@
             <div class="container">
                 <ul class="nav navbar-nav">
                     <li><a href="index.jsp">Home</a></li>
-                    <li class="selected-nav-item"><a href=<c:url value="/user/loadRestaurants"/>>Restaurants</a></li>
+                    <li class="selected-nav-item"><a href=<c:url value="/restaurant/getAll"/>>Restaurants</a></li>
                     <li><a href="#">About us</a></li>
                     <c:if test="${not empty admin}">
                         <li><a href="adminPanel.jsp">Admin panel</a></li>

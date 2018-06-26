@@ -83,10 +83,4 @@ public class UserController {
         loggedUser = null;
         return "redirect:/index.jsp";
     }
-
-    @RequestMapping(value = "/loadRestaurants", method = RequestMethod.GET)
-    public String loadRestaurants(HttpServletRequest request) {
-        request.getSession().setAttribute("restaurants", restaurantRepository.findAll());
-        return "redirect:/restaurants.jsp";
-    }
 }

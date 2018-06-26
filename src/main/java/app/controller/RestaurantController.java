@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -27,14 +28,22 @@ public class RestaurantController {
     private static final String IMAGE_FOLDER = "C:\\Users\\Lenovo\\Desktop\\IDEA workspace\\Reserve\\src\\main\\webapp\\resources\\imgs\\";
 
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)
-    public String getAll(Model m, HttpServletRequest request) {
+    public String getAll(HttpServletRequest request) {
         List<Restaurant> restaurants = restaurantRepository.findAll();
         request.getSession().setAttribute("restaurants", restaurants);
         return "redirect:/restaurants.jsp";
     }
 
+    @RequestMapping(value = "/getAllAdminTable", method = RequestMethod.GET)
+    public String getAllAdminTable(HttpServletRequest request, RedirectAttributes ra) {
+        List<Restaurant> restaurants = restaurantRepository.findAll();
+        request.getSession().setAttribute("restaurants", restaurants);
+        ra.addAttribute("showTable", true);
+        return "redirect:/adminPanel.jsp?";
+    }
+
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String add(@RequestParam("file") MultipartFile file, Restaurant restaurant, HttpServletRequest request) {
+    public String add(@RequestParam("file") MultipartFile file, Restaurant restaurant, RedirectAttributes ra) {
 
         try {
             // Get the file and save it
@@ -52,6 +61,12 @@ public class RestaurantController {
         }
 
         Restaurant restaurantAdded = restaurantRepository.save(restaurant);
+        if (restaurantAdded != null) {
+            ra.addAttribute("successfullyAddedRestaurant", true);
+        } else {
+            ra.addAttribute("successfullyAddedRestaurant", false);
+        }
+
         return "redirect:/adminPanel.jsp";
     }
 

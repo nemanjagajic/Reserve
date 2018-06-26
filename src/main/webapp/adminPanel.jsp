@@ -24,13 +24,13 @@
 </head>
 
 <!-- BODY -->
-<body class="restaurants" onload="getAllRestaurants()">
+<body>
 <!-- Navbar -->
 <nav class="navbar navbar-inverse sticky">
     <div class="container">
         <ul class="nav navbar-nav">
             <li><a href="index.jsp">Home</a></li>
-            <li><a href=<c:url value="/user/loadRestaurants"/>>Restaurants</a></li>
+            <li><a href=<c:url value="/restaurant/getAll"/>>Restaurants</a></li>
             <li><a href="#">About us</a></li>
             <c:if test="${not empty admin}">
                 <li class="selected-nav-item"><a href="adminPanel.jsp">Admin panel</a></li>
@@ -63,7 +63,7 @@
 
     <div class="admin-buttons">
         <button class="admin-panel-button" type="button" data-toggle="modal" data-target="#addRestaurantModal">Add restaurant</button>
-        <button class="admin-panel-button">Delete restaurant</button>
+        <a href=<c:url value="/restaurant/getAllAdminTable"/>><button class="admin-panel-button">Show restaurants</button></a>
     </div>
 
     <!-- Modal -->
@@ -91,6 +91,9 @@
                             <input class="form-control" name="number" placeholder="Phone number*" required="required">
                         </div>
                         <div class="form-group">
+                            <input class="form-control" name="about" placeholder="Description" type="text">
+                        </div>
+                        <div class="form-group">
                             <input class="form-control" name="promoCode" placeholder="Has promo codes (1 if yes, 0 otherwise)" type="number">
                         </div>
                         <div class="form-group">
@@ -109,6 +112,50 @@
 
         </div>
     </div>
+
+    <c:if test="${not empty param.successfullyAddedRestaurant}">
+        <c:choose>
+            <c:when test="${param.successfullyAddedRestaurant == true}">
+                <div class="success-message-text animated fadeIn">
+                    Successfully added restaurant!
+                </div>
+            </c:when>
+            <c:otherwise>
+                <div class="fail-message-text animated fadeIn">
+                    Something went wrong. Restaurant not added.
+                </div>
+            </c:otherwise>
+        </c:choose>
+    </c:if>
+
+    <c:if test="${not empty restaurants && param.showTable == true}">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Working hours</th>
+                <th>Phone number</th>
+                <th>Stars</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach items="${restaurants}" var="restaurant">
+                <tr>
+                    <td>${restaurant.id}</td>
+                    <td>${restaurant.name}</td>
+                    <td>${restaurant.location}</td>
+                    <td>${restaurant.workingHours}</td>
+                    <td>${restaurant.number}</td>
+                    <td>${restaurant.stars}</td>
+                    <td><ion-icon name="trash"></ion-icon></td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </c:if>
 </div>
 
 

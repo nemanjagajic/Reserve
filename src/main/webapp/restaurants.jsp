@@ -261,6 +261,14 @@
                 } else {
                     document.getElementById('modalReservationDiv').style.display = "none";
                     document.getElementById('reservationButton').style.background = "#555";
+                    document.getElementById('reservationButton').onmouseover = function () {
+                        this.style.background = '#333';
+                    }
+                    document.getElementById('reservationButton').onmouseleave = function () {
+                        if (!reservationOpen) {
+                            this.style.background = '#555';
+                        }
+                    }
                     reservationOpen = false;
                 }
             }
@@ -269,6 +277,14 @@
                 if (reservationOpen) {
                     document.getElementById('modalReservationDiv').style.display = "none";
                     document.getElementById('reservationButton').style.background = "#555";
+                    document.getElementById('reservationButton').onmouseover = function () {
+                        this.style.background = '#333';
+                    }
+                    document.getElementById('reservationButton').onmouseleave = function () {
+                        if (!reservationOpen) {
+                            this.style.background = '#555';
+                        }
+                    }
                     reservationOpen = false;
                 }
             }

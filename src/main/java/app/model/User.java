@@ -1,6 +1,7 @@
 package app.model;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -13,6 +14,7 @@ public class User {
     private String phone;
     private String password;
     private String role;
+    private Collection<Reservation> reservationsById;
 
     public User() {
         // Empty constructor
@@ -141,5 +143,14 @@ public class User {
                 ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
                 '}';
+    }
+
+    @OneToMany(mappedBy = "userByUserId")
+    public Collection<Reservation> getReservationsById() {
+        return reservationsById;
+    }
+
+    public void setReservationsById(Collection<Reservation> reservationsById) {
+        this.reservationsById = reservationsById;
     }
 }

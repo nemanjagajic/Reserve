@@ -32,6 +32,36 @@ h4 {
     color: #FFD602;
 }
 
+.modal-form {
+    font-size: 18px;
+    margin: 20px auto;
+    display: block;
+    width: 180px;
+}
+
+.modal-submit {
+    display: block;
+    width: 150px;
+    height: 50px;
+    font-size: 16px;
+    margin: auto;
+    color: #737373;
+    border: 1px solid #FFD602;
+    background: #FFD602;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: inset 0 0 0 0 #e6e6e6;
+    -webkit-transition: all ease 0.5s;
+    -moz-transition: all ease 0.5s;
+    transition: all ease 0.5s;
+}
+
+.modal-submit:hover {
+    background-color: #ffdd33;
+    border-color: #ffdd33;
+}
+
 /* ---------- Navbar ---------- */
 .navbar {
     -webkit-border-radius: 0;

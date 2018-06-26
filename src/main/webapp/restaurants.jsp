@@ -212,6 +212,18 @@
                                 <!-- Reservation -->
                                 <div id="modalReservationDiv" class="animated fadeIn">
                                     <h3>Reservation</h3>
+                                    <form class="modal-form" action="${pageContext.request.contextPath}/reservation/add" method="post">
+                                        <input id="formRestaurantId" type="hidden" name="restaurantId">
+                                        <div class="form-group">
+                                            <input class="form-control" type="text" name="numberOfPersons" placeholder="Number of persons*">
+                                        </div>
+                                        <div class="form-group">
+                                            <input class="form-control" type="text" name="time" placeholder="Time*">
+                                        </div>
+                                        <div class="form-group">
+                                            <input  class="modal-submit" type="submit" value="Submit">
+                                        </div>
+                                    </form>
                                 </div>
 
                                 <div class="modal-footer">
@@ -256,6 +268,7 @@
                 if (!reservationOpen) {
                     document.getElementById('modalReservationDiv').style.display = "block";
                     document.getElementById('reservationButton').style.background = "#333";
+                    document.getElementById('formRestaurantId').value = document.getElementById('modalRestaurantTitle').innerHTML;
                     reservationOpen = true;
                 } else {
                     document.getElementById('modalReservationDiv').style.display = "none";

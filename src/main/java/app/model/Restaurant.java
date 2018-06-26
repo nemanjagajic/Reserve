@@ -1,6 +1,7 @@
 package app.model;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -15,6 +16,7 @@ public class Restaurant {
     private Byte promoCode;
     private String additionalLabel;
     private String image;
+    private Collection<Reservation> reservationsById;
 
     @Id
     @Column(name = "id")
@@ -154,5 +156,14 @@ public class Restaurant {
                 ", additionalLabel='" + additionalLabel + '\'' +
                 ", image='" + image + '\'' +
                 '}';
+    }
+
+    @OneToMany(mappedBy = "restaurantByRestaurantId")
+    public Collection<Reservation> getReservationsById() {
+        return reservationsById;
+    }
+
+    public void setReservationsById(Collection<Reservation> reservationsById) {
+        this.reservationsById = reservationsById;
     }
 }

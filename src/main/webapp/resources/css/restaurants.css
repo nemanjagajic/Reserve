@@ -65,7 +65,7 @@ h4 {
 .success-message-text {
     font-size: 24px;
     word-spacing: 2px;
-    color: #00cc00;
+    color: #00cc66;
     text-align: center;
 }
 
@@ -75,6 +75,33 @@ h4 {
     color: #ff8080;
     margin-bottom: 40px;
     text-align: center;
+}
+
+.table-label-orange {
+    background: #ffa64d;
+    width: 70px;
+    text-align: center;
+    font-size: 14px;
+    color: #FFF;
+    border-radius: 5px;
+}
+
+.table-label-green {
+    background: #00cc66;
+    width: 70px;
+    text-align: center;
+    font-size: 14px;
+    color: #FFF;
+    border-radius: 5px;
+}
+
+.table-label-red {
+    background: #ff8080;
+    width: 70px;
+    text-align: center;
+    font-size: 14px;
+    color: #FFF;
+    border-radius: 5px;
 }
 
 /* ---------- Navbar ---------- */
@@ -300,7 +327,7 @@ h4 {
 /* ---------------------------------------- */
 .admin-panel-button {
     display: inline-block;
-    width: 180px;
+    width: 185px;
     height: 60px;
     font-size: 16px;
     margin: 0 10px;
@@ -327,7 +354,7 @@ h4 {
 
 .admin-buttons {
     margin: 0 auto 50px;
-    width: 404px;
+    width: 623px;
 }
 
 /* ---------- Modal ---------- */
@@ -427,5 +454,9 @@ h4 {
 }
 
 #modalMessage {
+    text-align: center;
+}
+
+#modalMessageReservation {
     text-align: center;
 }

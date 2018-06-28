@@ -8,15 +8,14 @@ public class Reservation {
     private Integer id;
     private String time;
     private Integer numberOfPersons;
-    private Byte accepted;
+    private Integer accepted;
     private User user;
     private Restaurant restaurant;
-
     public Reservation() {
 
     }
 
-    public Reservation(String time, Integer numberOfPersons, Byte accepted, User user, Restaurant restaurant) {
+    public Reservation(String time, Integer numberOfPersons, Integer accepted, User user, Restaurant restaurant) {
         this.time = time;
         this.numberOfPersons = numberOfPersons;
         this.accepted = accepted;
@@ -57,11 +56,11 @@ public class Reservation {
 
     @Basic
     @Column(name = "accepted")
-    public Byte getAccepted() {
+    public Integer getAccepted() {
         return accepted;
     }
 
-    public void setAccepted(Byte accepted) {
+    public void setAccepted(Integer accepted) {
         this.accepted = accepted;
     }
 

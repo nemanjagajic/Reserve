@@ -509,7 +509,7 @@ h4 {
     margin-top: 20px;
 }
 
-.btn {
+.edit-profile-button {
     margin: 30px auto 0;
     display: block;
     -webkit-transition: all ease 0.5s;
@@ -518,11 +518,11 @@ h4 {
     color: #737373;
 }
 
-.btn:hover {
+.edit-profile-button:hover {
     background-color: #cccccc;
     color: #737373;
 }
 
-.btn:focus {
+.edit-profile-button:focus {
     color: #737373;
 }

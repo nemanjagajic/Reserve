@@ -73,7 +73,7 @@
                 <span class="label">role:</span> ${user.role}<br>
             </div>
         </div>
-        <button class="btn btn-light">Edit profile</button>
+        <button class="edit-profile-button btn btn-light">Edit profile</button>
     </c:if>
 
     <h2 class="reservations-title">My reservations</h2>

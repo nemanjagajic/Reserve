@@ -15,6 +15,7 @@ public class User {
     private String password;
     private String role;
     private Collection<Reservation> reservations;
+    private String image;
 
     public User() {
         // Empty constructor
@@ -62,7 +63,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "lastName")
+    @Column(name = "last_name")
     public String getLastName() {
         return lastName;
     }
@@ -131,6 +132,25 @@ public class User {
         return Objects.hash(id, username, name, lastName, email, phone, password);
     }
 
+    @OneToMany(mappedBy = "user")
+    public Collection<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(Collection<Reservation> reservationsById) {
+        this.reservations = reservationsById;
+    }
+
+    @Basic
+    @Column(name = "image")
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -142,15 +162,8 @@ public class User {
                 ", phone='" + phone + '\'' +
                 ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
+                ", reservations=" + reservations +
+                ", image='" + image + '\'' +
                 '}';
-    }
-
-    @OneToMany(mappedBy = "user")
-    public Collection<Reservation> getReservations() {
-        return reservations;
-    }
-
-    public void setReservations(Collection<Reservation> reservationsById) {
-        this.reservations = reservationsById;
     }
 }

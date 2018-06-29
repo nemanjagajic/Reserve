@@ -1,6 +1,8 @@
 package app.controller;
 
+import app.model.Reservation;
 import app.model.User;
+import app.repository.ReservationRepository;
 import app.repository.RestaurantRepository;
 import app.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/user")
@@ -20,6 +23,9 @@ public class UserController {
 
     @Autowired
     private RestaurantRepository restaurantRepository;
+
+    @Autowired
+    private ReservationRepository reservationRepository;
 
     public static User loggedUser;
 
@@ -78,5 +84,13 @@ public class UserController {
         request.getSession().invalidate();
         loggedUser = null;
         return "redirect:/index.jsp";
+    }
+
+    @RequestMapping(value = "/getProfile", method = RequestMethod.GET)
+    public String getProfile(HttpServletRequest request) {
+        List<Reservation> myReservations = reservationRepository.findAllByUser(loggedUser);
+        request.getSession().setAttribute("user", loggedUser);
+        request.getSession().setAttribute("myReservations", myReservations);
+        return "redirect:/profile.jsp";
     }
 }

@@ -261,12 +261,12 @@
 
         function setClickedRestaurant(restaurantId) {
             document.getElementById('restaurantIdHiddenField').value = restaurantId;
-            document.getElementById('modalMessage').innerText = "Are you sure you want to delete restaurant with id " + restaurantId;
+            document.getElementById('modalMessage').innerText = "Are you sure you want to delete restaurant with id " + restaurantId + "?";
         }
 
         function setClickedReservation(reservationId) {
             document.getElementById('reservationIdHiddenField').value = reservationId;
-            document.getElementById('modalMessageReservation').innerText = "Are you sure you want to delete reservation with id " + reservationId;
+            document.getElementById('modalMessageReservation').innerText = "Are you sure you want to delete reservation with id " + reservationId + "?";
         }
     </script>
     </body>

@@ -61,11 +61,13 @@
     <div class="container">
         <h2>Admin panel</h2>
 
-        <div class="admin-buttons">
-            <button class="admin-panel-button" type="button" data-toggle="modal" data-target="#addRestaurantModal">Add restaurant</button>
-            <a href=<c:url value="/restaurant/getAllAdminTable"/>><button class="admin-panel-button">Show restaurants</button></a>
-            <a href=<c:url value="/reservation/getAllAdminTable"/>><button class="admin-panel-button">Show reservations</button></a>
-        </div>
+        <c:if test="${admin == true}">
+            <div class="admin-buttons">
+                <button class="admin-panel-button" type="button" data-toggle="modal" data-target="#addRestaurantModal">Add restaurant</button>
+                <a href=<c:url value="/restaurant/getAllAdminTable"/>><button class="admin-panel-button">Show restaurants</button></a>
+                <a href=<c:url value="/reservation/getAllAdminTable"/>><button class="admin-panel-button">Show reservations</button></a>
+            </div>
+        </c:if>
 
         <!-- Add modal -->
         <div id="addRestaurantModal" class="modal fade" role="dialog">

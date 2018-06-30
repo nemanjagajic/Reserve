@@ -31,17 +31,22 @@ public class ReservationController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String add(HttpServletRequest request) {
-        Reservation reservation = new Reservation(
-                request.getParameter("time"),
-                Integer.parseInt(request.getParameter("numberOfPersons")),
-                Integer.parseInt("0"),
-                UserController.loggedUser,
-                restaurantRepository.getByName(request.getParameter("restaurantName"))
-        );
+    public String add(HttpServletRequest request, RedirectAttributes ra) {
+        if (UserController.loggedUser != null) {
+            Reservation reservation = new Reservation(
+                    request.getParameter("time"),
+                    Integer.parseInt(request.getParameter("numberOfPersons")),
+                    Integer.parseInt("0"),
+                    UserController.loggedUser,
+                    restaurantRepository.getByName(request.getParameter("restaurantName"))
+            );
 
-        reservationRepository.save(reservation);
-        return "redirect:/restaurants.jsp";
+            reservationRepository.save(reservation);
+            return "redirect:/restaurants.jsp";
+        }
+
+        ra.addAttribute("login", true);
+        return "redirect:/index.jsp";
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)

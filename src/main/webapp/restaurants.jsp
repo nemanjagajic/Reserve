@@ -224,6 +224,11 @@
                                             <input  class="modal-submit" type="submit" value="Submit">
                                         </div>
                                     </form>
+                                    <c:if test="${empty username}">
+                                        <div class="modal-error-text">
+                                            You must be logged in to make a reservation
+                                        </div>
+                                    </c:if>
                                 </div>
 
                                 <div class="modal-footer">

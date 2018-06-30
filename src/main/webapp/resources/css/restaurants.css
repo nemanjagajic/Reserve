@@ -119,6 +119,13 @@ h4 {
     margin: 20px auto;
 }
 
+.modal-error-text {
+    text-align: center;
+    color: #ff8080;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
 /* ---------- Navbar ---------- */
 .navbar {
     -webkit-border-radius: 0;

@@ -12,4 +12,6 @@ import java.util.List;
 public interface ReservationRepository extends JpaRepository<Reservation, Integer> {
     void deleteAllByRestaurant(Restaurant restaurant);
     List<Reservation> findAllByUser(User u);
+    List<Reservation> findAllByRestaurant(Restaurant r);
+    Reservation findById(Integer id);
 }

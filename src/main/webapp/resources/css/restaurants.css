@@ -455,6 +455,7 @@ h4 {
     -webkit-transition: color 0.5s;
     -moz-transition: color 0.5s;
     transition: color 0.5s;
+    font-size: 18px;
 }
 
 .delete-button:hover {
@@ -462,6 +463,23 @@ h4 {
 }
 
 .delete-button:focus {
+    outline: none;
+}
+
+.confirm-button {
+    background-color: transparent;
+    border: none;
+    -webkit-transition: color 0.5s;
+    -moz-transition: color 0.5s;
+    transition: color 0.5s;
+    font-size: 18px;
+}
+
+.confirm-button:hover {
+    color: #00cc66;
+}
+
+.confirm-button:focus {
     outline: none;
 }
 
@@ -495,8 +513,12 @@ h4 {
     text-align: center;
 }
 
+#modalAcceptMessageReservation {
+    text-align: center;
+}
+
 /* ---------------------------------------- */
-/* ADMIN PANEL */
+/* USER PANEL */
 /* ---------------------------------------- */
 .user-info {
     width: 500px;
@@ -543,4 +565,11 @@ h4 {
 
 .edit-profile-button:focus {
     color: #737373;
+}
+
+/* ---------------------------------------- */
+/* MANAGER PANEL */
+/* ---------------------------------------- */
+.manager-button-line {
+    width: 414px;
 }

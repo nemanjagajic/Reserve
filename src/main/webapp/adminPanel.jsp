@@ -32,6 +32,9 @@
                 <li><a href="index.jsp">Home</a></li>
                 <li><a href=<c:url value="/restaurant/getAll"/>>Restaurants</a></li>
                 <li><a href="#">About us</a></li>
+                <c:if test="${not empty manager}">
+                    <li><a href="managerPanel.jsp">Manager panel</a></li>
+                </c:if>
                 <c:if test="${not empty admin}">
                     <li class="selected-nav-item"><a href="adminPanel.jsp">Admin panel</a></li>
                 </c:if>
@@ -64,8 +67,8 @@
         <c:if test="${admin == true}">
             <div class="admin-buttons">
                 <button class="admin-panel-button" type="button" data-toggle="modal" data-target="#addRestaurantModal">Add restaurant</button>
-                <a href=<c:url value="/restaurant/getAllAdminTable"/>><button class="admin-panel-button">Show restaurants</button></a>
-                <a href=<c:url value="/reservation/getAllAdminTable"/>><button class="admin-panel-button">Show reservations</button></a>
+                <a href=<c:url value="/restaurant/getAllAdminTable"/>><button class="admin-panel-button">Restaurants</button></a>
+                <a href=<c:url value="/reservation/getAllAdminTable"/>><button class="admin-panel-button">Reservations</button></a>
             </div>
         </c:if>
 
@@ -233,7 +236,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Delete restaurant</h4>
+                            <h4 class="modal-title">Delete reservation</h4>
                         </div>
                         <div class="modal-body">
                             <p id="modalMessageReservation">Are you sure you want to delete reservation with id </p>

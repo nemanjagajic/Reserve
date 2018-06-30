@@ -53,7 +53,8 @@ public class UserController {
                     user.getEmail(),
                     user.getPhone(),
                     user.getPassword(),
-                    user.getRole()
+                    user.getRole(),
+                    "resources/imgs/default-user-image.png"
             );
             if (userRepository.save(userToAdd) != null) {
                 ra.addAttribute("successfullyRegistered", true);
@@ -82,6 +83,11 @@ public class UserController {
             request.getSession().setAttribute("restaurants", restaurantRepository.findAll());
             if (user.getRole() != null && user.getRole().equals("admin")) {
                 request.getSession().setAttribute("admin", true);
+            }
+            if (user.getRole() != null && user.getRole().equals("manager")) {
+                request.getSession().setAttribute("manager", true);
+                // Fetch the first managed restaurant (at this point, the only one)
+                request.getSession().setAttribute("managedRestaurant", user.getRestaurants().iterator().next());
             }
             loggedUser = user;
             return "redirect:/restaurants.jsp";

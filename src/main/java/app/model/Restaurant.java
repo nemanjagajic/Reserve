@@ -17,6 +17,7 @@ public class Restaurant {
     private String additionalLabel;
     private String image;
     private Collection<Reservation> reservations;
+    private User manager;
 
     @Id
     @Column(name = "id")
@@ -165,5 +166,15 @@ public class Restaurant {
 
     public void setReservations(Collection<Reservation> reservationsById) {
         this.reservations = reservationsById;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "manager_id", referencedColumnName = "id")
+    public User getManager() {
+        return manager;
+    }
+
+    public void setManager(User manager) {
+        this.manager = manager;
     }
 }

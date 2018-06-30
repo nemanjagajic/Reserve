@@ -16,12 +16,13 @@ public class User {
     private String role;
     private Collection<Reservation> reservations;
     private String image;
+    private Collection<Restaurant> restaurants;
 
     public User() {
         // Empty constructor
     }
 
-    public User(String username, String name, String lastName, String email, String phone, String password, String role) {
+    public User(String username, String name, String lastName, String email, String phone, String password, String role, String image) {
         this.username = username;
         this.name = name;
         this.lastName = lastName;
@@ -29,6 +30,7 @@ public class User {
         this.phone = phone;
         this.password = password;
         this.role = role;
+        this.image = image;
     }
 
     @Id
@@ -112,6 +114,16 @@ public class User {
         this.role = role;
     }
 
+    @Basic
+    @Column(name = "image")
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -137,18 +149,8 @@ public class User {
         return reservations;
     }
 
-    public void setReservations(Collection<Reservation> reservationsById) {
-        this.reservations = reservationsById;
-    }
-
-    @Basic
-    @Column(name = "image")
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
+    public void setReservations(Collection<Reservation> restaurants) {
+        this.reservations = restaurants;
     }
 
     @Override
@@ -165,5 +167,14 @@ public class User {
                 ", reservations=" + reservations +
                 ", image='" + image + '\'' +
                 '}';
+    }
+
+    @OneToMany(mappedBy = "manager")
+    public Collection<Restaurant> getRestaurants() {
+        return restaurants;
+    }
+
+    public void setRestaurants(Collection<Restaurant> restaurants) {
+        this.restaurants = restaurants;
     }
 }

@@ -33,6 +33,9 @@
                 <li><a href="index.jsp">Home</a></li>
                 <li><a href=<c:url value="/restaurant/getAll"/>>Restaurants</a></li>
                 <li><a href="#">About us</a></li>
+                <c:if test="${not empty manager}">
+                    <li><a href="managerPanel.jsp">Manager panel</a></li>
+                </c:if>
                 <c:if test="${not empty admin}">
                     <li><a href="adminPanel.jsp">Admin panel</a></li>
                 </c:if>

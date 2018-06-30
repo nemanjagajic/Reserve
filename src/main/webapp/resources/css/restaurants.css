@@ -415,6 +415,17 @@ h4 {
     margin: auto;
 }
 
+.edit-restaurant-form {
+    width: 350px;
+    display: block;
+    margin: auto;
+}
+
+.edit-restaurant-form .submit-button {
+    display: block;
+    margin: auto;
+}
+
 .submit-button {
     display: inline-block;
     width: 130px;

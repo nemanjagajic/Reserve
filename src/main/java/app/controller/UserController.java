@@ -9,9 +9,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.transaction.Transactional;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -26,6 +34,8 @@ public class UserController {
 
     @Autowired
     private ReservationRepository reservationRepository;
+
+    private static final String IMAGE_FOLDER = "C:\\Users\\Lenovo\\Desktop\\IDEA workspace\\Reserve\\src\\main\\webapp\\resources\\imgs\\";
 
     public static User loggedUser;
 
@@ -90,7 +100,32 @@ public class UserController {
     public String getProfile(HttpServletRequest request) {
         List<Reservation> myReservations = reservationRepository.findAllByUser(loggedUser);
         request.getSession().setAttribute("user", loggedUser);
+        Collections.reverse(myReservations);
         request.getSession().setAttribute("myReservations", myReservations);
+        return "redirect:/profile.jsp";
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public String update(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
+        loggedUser.setName(request.getParameter("name"));
+        loggedUser.setLastName(request.getParameter("lastName"));
+        loggedUser.setPhone(request.getParameter("phone"));
+        loggedUser.setPassword(request.getParameter("password"));
+
+        try {
+            // Get the file and save it
+            String fileName = file.getOriginalFilename();
+            if (!fileName.equals("")) {
+                byte[] bytes = file.getBytes();
+                Path path = Paths.get(IMAGE_FOLDER + fileName);
+                Files.write(path, bytes);
+                loggedUser.setImage("resources/imgs/" + fileName);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        userRepository.save(loggedUser);
         return "redirect:/profile.jsp";
     }
 }

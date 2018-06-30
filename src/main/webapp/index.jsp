@@ -77,7 +77,7 @@
                         </c:when>
                         <c:otherwise>
                             <h2>Register</h2>
-                            <!-- Contact form -->
+                            <!-- Register form -->
                             <form class="register-form" action="${pageContext.request.contextPath}/user/register" method="post">
                                 <div class="form-group">
                                     <input class="form-control" name="username" placeholder="Username" required="required">

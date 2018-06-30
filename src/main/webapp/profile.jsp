@@ -3,7 +3,7 @@
 <html>
     <!-- HEAD -->
     <head>
-        <title>Admin panel</title>
+        <title>Profile</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -73,7 +73,43 @@
                 <span class="label">role:</span> ${user.role}<br>
             </div>
         </div>
-        <button class="edit-profile-button btn btn-light">Edit profile</button>
+        <button class="edit-profile-button btn btn-light" data-toggle="modal" data-target="#editModal">Edit profile</button>
+
+        <!-- Edit modal -->
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Edit profile</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="edit-restaurant-form" action="${pageContext.request.contextPath}/user/update" method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <input class="form-control" name="name" placeholder="Name" value="${user.name}" required="required">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" name="lastName" placeholder="Last name" value="${user.lastName}" required="required">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" name="phone" placeholder="Phone number" value="${user.phone}" required="required">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" name="password" placeholder="Password" type="password" value="${user.password}" required="required"
+                                       pattern=".{8,}" title="Password must contain 8 or more characters">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" value="choose image" type="file" name="file" accept="image/*">
+                            </div>
+                            <input type="submit" value="Confirm" class="button-transparent submit-button animated fadeIn">
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </c:if>
 
     <h2 class="reservations-title">My reservations</h2>

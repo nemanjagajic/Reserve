@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -25,6 +26,7 @@ public class ReservationController {
     @RequestMapping(value = "/getAllAdminTable", method = RequestMethod.GET)
     public String getAllAdminTable(HttpServletRequest request, RedirectAttributes ra) {
         List<Reservation> reservations = reservationRepository.findAll();
+        Collections.reverse(reservations);
         request.getSession().setAttribute("reservations", reservations);
         ra.addAttribute("showReservations", true);
         return "redirect:/adminPanel.jsp";
@@ -42,7 +44,7 @@ public class ReservationController {
             );
 
             reservationRepository.save(reservation);
-            return "redirect:/restaurants.jsp";
+            return "redirect:/user/getProfile";
         }
 
         ra.addAttribute("login", true);

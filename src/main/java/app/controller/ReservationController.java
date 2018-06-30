@@ -92,4 +92,16 @@ public class ReservationController {
         return "redirect:/managerPanel.jsp";
     }
 
+    @RequestMapping(value = "/decline", method = RequestMethod.POST)
+    public String decline(HttpServletRequest request, RedirectAttributes ra) {
+        Reservation reservation = reservationRepository.findById(Integer.parseInt(request.getParameter("reservationId")));
+        reservation.setAccepted(2);
+        reservationRepository.save(reservation);
+        List<Reservation> reservations = reservationRepository.findAllByRestaurant(UserController.loggedUser.getRestaurants().iterator().next());
+        Collections.reverse(reservations);
+        request.getSession().setAttribute("reservations", reservations);
+        ra.addAttribute("showReservations", true);
+        return "redirect:/managerPanel.jsp";
+    }
+
 }

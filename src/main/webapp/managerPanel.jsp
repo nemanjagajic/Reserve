@@ -83,6 +83,7 @@
                         <th>Persons</th>
                         <th>Status</th>
                         <th>Delete</th>
+                        <th>Decline</th>
                         <th>Accept</th>
                     </tr>
                     </thead>
@@ -105,6 +106,7 @@
                                 </c:if>
                             </td>
                             <td><button type="button" class="delete-button" data-toggle="modal" data-target="#deleteReservationModal" onclick="setClickedReservation(${reservation.id})"><ion-icon name="trash"></ion-icon></button></td>
+                            <td><button type="button" class="decline-button"  data-toggle="modal" data-target="#declineReservationModal" onclick="setDeclinedReservation(${reservation.id})"><ion-icon name="close-circle"></ion-icon></button></td>
                             <td><button type="button" class="confirm-button"  data-toggle="modal" data-target="#acceptReservationModal" onclick="setConfirmingReservation(${reservation.id})"><ion-icon name="checkmark-circle"></ion-icon></button></td>
                         </tr>
                     </c:forEach>
@@ -147,9 +149,34 @@
                                 <h4 class="modal-title">Accept reservation</h4>
                             </div>
                             <div class="modal-body">
-                                <p id="modalAcceptMessageReservation">Are you sure you want to delete reservation with id </p>
+                                <p id="modalAcceptMessageReservation">Are you sure you want to accept reservation with id </p>
                                 <form action="/reservation/accept" method="post">
                                     <input id="reservationAcceptIdHiddenField" type="hidden" name="reservationId">
+                                    <input class="modal-confirm-button" type="submit" value="Yes">
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Decline dialog modal -->
+                <div class="modal fade" id="declineReservationModal" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Accept reservation</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p id="modalDeclineMessageReservation">Are you sure you want to decline reservation with id </p>
+                                <form action="/reservation/decline" method="post">
+                                    <input id="reservationDeclineIdHiddenField" type="hidden" name="reservationId">
                                     <input class="modal-confirm-button" type="submit" value="Yes">
                                 </form>
                             </div>
@@ -175,6 +202,11 @@
             function setConfirmingReservation(reservationId) {
                 document.getElementById('reservationAcceptIdHiddenField').value = reservationId;
                 document.getElementById('modalAcceptMessageReservation').innerText = "Are you sure you want to accept reservation with id " + reservationId + "?";
+            }
+
+            function setDeclinedReservation(reservationId) {
+                document.getElementById('reservationDeclineIdHiddenField').value = reservationId;
+                document.getElementById('modalDeclineMessageReservation').innerText = "Are you sure you want to decline reservation with id " + reservationId + "?";
             }
         </script>
     </body>

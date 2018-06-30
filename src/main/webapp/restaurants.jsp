@@ -251,10 +251,6 @@
         <script>
             var reservationOpen = false;
 
-            $(document).ready(function(){
-                $('[data-toggle="popover"]').popover();
-            });
-
             function setRestaurant(restaurant) {
                 document.getElementById("modalRestaurantTitle").innerHTML = restaurant.name;
                 document.getElementById("modalRestaurantImage").src = restaurant.image;

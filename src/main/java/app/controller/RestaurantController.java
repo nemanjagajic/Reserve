@@ -1,6 +1,8 @@
 package app.controller;
 
+import app.model.Comment;
 import app.model.Restaurant;
+import app.repository.CommentRepository;
 import app.repository.ReservationRepository;
 import app.repository.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -30,12 +33,18 @@ public class RestaurantController {
     @Autowired
     private ReservationRepository reservationRepository;
 
+    @Autowired
+    private CommentRepository commentRepository;
+
     private static final String IMAGE_FOLDER = "C:\\Users\\Lenovo\\Desktop\\IDEA workspace\\Reserve\\src\\main\\webapp\\resources\\imgs\\";
 
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)
     public String getAll(HttpServletRequest request) {
         List<Restaurant> restaurants = restaurantRepository.findAll();
+        List<Comment> comments = commentRepository.findAll();
+        Collections.reverse(comments);
         request.getSession().setAttribute("restaurants", restaurants);
+        request.getSession().setAttribute("comments", comments);
         return "redirect:/restaurants.jsp";
     }
 

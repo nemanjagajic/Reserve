@@ -1,7 +1,9 @@
 package app.controller;
 
+import app.model.Comment;
 import app.model.Reservation;
 import app.model.User;
+import app.repository.CommentRepository;
 import app.repository.ReservationRepository;
 import app.repository.RestaurantRepository;
 import app.repository.UserRepository;
@@ -33,6 +35,9 @@ public class UserController {
 
     @Autowired
     private ReservationRepository reservationRepository;
+
+    @Autowired
+    private CommentRepository commentRepository;
 
     private static final String IMAGE_FOLDER = "C:\\Users\\Lenovo\\Desktop\\IDEA workspace\\Reserve\\src\\main\\webapp\\resources\\imgs\\";
 
@@ -80,6 +85,9 @@ public class UserController {
             request.getSession().setAttribute("successfullyLoggedIn", true);
             request.getSession().setAttribute("username", username);
             request.getSession().setAttribute("restaurants", restaurantRepository.findAll());
+            List<Comment> comments = commentRepository.findAll();
+            Collections.reverse(comments);
+            request.getSession().setAttribute("comments", comments);
             if (user.getRole() != null && user.getRole().equals("admin")) {
                 request.getSession().setAttribute("admin", true);
             }

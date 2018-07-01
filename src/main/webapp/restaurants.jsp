@@ -159,7 +159,7 @@
                     <h2>Available restaurants</h2>
                     <c:forEach items="${restaurants}" var="restaurant">
                         <div class="restaurant row animated fadeIn" data-toggle="modal" data-target="#restaurantModal"
-                             onclick="setRestaurant({name:'${restaurant.name}', image: '${restaurant.image}'}); clearReservationDiv()">
+                             onclick="setRestaurant({name:'${restaurant.name}', image: '${restaurant.image}'}); clearReservationDiv(); clearCommentsDiv(); clearLeaveCommentDiv()">
                             <div class="col-sm-3">
                                 <img src="${restaurant.image}">
                             </div>
@@ -208,8 +208,8 @@
                                 <div class="modal-body">
                                     <img id="modalRestaurantImage" src="">
                                     <button id="reservationButton" class="show-button" onclick="showReservationDiv()">Make reservation</button>
-                                    <button id="showMenuButton" class="show-button">Show menu</button>
-                                    <button id="showCommentsButton "class="show-button">Show comments</button>
+                                    <button id="showCommentsButton" class="show-button" onclick="showCommentsDiv()">Show comments</button>
+                                    <button id="showLeaveCommentButton" class="show-button" onclick="showLeaveCommentDiv()">Leave comment</button>
                                 </div>
 
                                 <!-- Reservation -->
@@ -234,6 +234,34 @@
                                     </c:if>
                                 </div>
 
+                                <!-- Comments -->
+                                <div id="modalCommentsDiv" class="animated fadeIn">
+                                    <h3>Comments</h3>
+                                    <div class="comments">
+                                        <c:forEach items="${comments}" var="comment">
+                                            <div class="comment">
+                                                ${comment.comment}
+                                                <div id="userCommented" class="user-commented">${comment.user.username}</div>
+                                                <div class="commented-restaurant">${comment.restaurant.name}</div>
+                                            </div>
+                                        </c:forEach>
+                                    </div>
+                                </div>
+
+                                <!-- Leave comment -->
+                                <div id="modalLeaveCommentDiv" class="animated fadeIn">
+                                    <h3>Comment</h3>
+                                    <form action="/comment/add" method="post">
+                                        <input id="formCommentRestaurantName" type="hidden" name="restaurantName">
+                                        <div class="form-group">
+                                            <textarea placeholder="Write your comment here" name="comment"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <input  class="modal-submit" type="submit" value="Submit">
+                                        </div>
+                                    </form>
+                                </div>
+
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                 </div>
@@ -250,6 +278,8 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script>
             var reservationOpen = false;
+            var commentsOpen = false;
+            var leaveCommentOpen = false;
 
             function setRestaurant(restaurant) {
                 document.getElementById("modalRestaurantTitle").innerHTML = restaurant.name;
@@ -260,11 +290,100 @@
                 if (!reservationOpen) {
                     document.getElementById('modalReservationDiv').style.display = "block";
                     document.getElementById('reservationButton').style.background = "#333";
+                    document.getElementById("modalRestaurantImage").style.display = "none";
                     document.getElementById('formRestaurantName').value = document.getElementById('modalRestaurantTitle').innerHTML;
                     reservationOpen = true;
                 } else {
                     document.getElementById('modalReservationDiv').style.display = "none";
                     document.getElementById('reservationButton').style.background = "#555";
+                    document.getElementById("modalRestaurantImage").style.display = "block";
+                    document.getElementById('reservationButton').onmouseover = function () {
+                        this.style.background = '#333';
+                    }
+                    document.getElementById('reservationButton').onmouseleave = function () {
+                        if (!reservationOpen) {
+                            this.style.background = '#555';
+                        }
+                    }
+                    reservationOpen = false;
+                }
+
+                clearCommentsDiv();
+                clearLeaveCommentDiv();
+            }
+
+            function showCommentsDiv() {
+                if (!commentsOpen) {
+                    document.getElementById('modalCommentsDiv').style.display = "block";
+                    document.getElementById('showCommentsButton').style.background = "#333";
+                    document.getElementById("modalRestaurantImage").style.display = "none";
+                    commentsOpen = true;
+                } else {
+                    document.getElementById('modalCommentsDiv').style.display = "none";
+                    document.getElementById('showCommentsButton').style.background = "#555";
+                    document.getElementById("modalRestaurantImage").style.display = "block";
+                    document.getElementById('showCommentsButton').onmouseover = function () {
+                        this.style.background = '#333';
+                    }
+                    document.getElementById('showCommentsButton').onmouseleave = function () {
+                        if (!commentsOpen) {
+                            this.style.background = '#555';
+                        }
+                    }
+                    commentsOpen = false;
+                }
+
+                // Show only comments for selected restaurant
+                var comments = document.getElementsByClassName("comment");
+                var i;
+                for (i = 0; i < comments.length; i++) {
+                    if (comments[i].innerText.substr(comments[i].innerText.length - document.getElementById("modalRestaurantTitle").innerText.length - 1, comments[i].innerText.length - 1)
+                            .includes(document.getElementById("modalRestaurantTitle").innerText)) {
+                        comments[i].style.position = "relative";
+                        comments[i].style.left = "0";
+                    } else {
+                        comments[i].style.position = "absolute";
+                        comments[i].style.left = "-9999px";
+                    }
+                }
+
+                clearReservationDiv();
+                clearLeaveCommentDiv();
+            }
+
+            function showLeaveCommentDiv() {
+                if (!leaveCommentOpen) {
+                    document.getElementById('modalLeaveCommentDiv').style.display = "block";
+                    document.getElementById('showLeaveCommentButton').style.background = "#333";
+                    document.getElementById("modalRestaurantImage").style.display = "none";
+                    document.getElementById('formCommentRestaurantName').value = document.getElementById('modalRestaurantTitle').innerHTML;
+                    leaveCommentOpen = true;
+                } else {
+                    document.getElementById('modalLeaveCommentDiv').style.display = "none";
+                    document.getElementById('showLeaveCommentButton').style.background = "#555";
+                    document.getElementById("modalRestaurantImage").style.display = "block";
+                    document.getElementById('showLeaveCommentButton').onmouseover = function () {
+                        this.style.background = '#333';
+                    }
+                    document.getElementById('showLeaveCommentButton').onmouseleave = function () {
+                        if (!leaveCommentOpen) {
+                            this.style.background = '#555';
+                        }
+                    }
+                    leaveCommentOpen = false;
+                }
+
+                clearReservationDiv();
+                clearCommentsDiv();
+            }
+
+            function clearReservationDiv() {
+                if (reservationOpen) {
+                    document.getElementById('modalReservationDiv').style.display = "none";
+                    document.getElementById('reservationButton').style.background = "#555";
+                    if (!commentsOpen && !leaveCommentOpen) {
+                        document.getElementById("modalRestaurantImage").style.display = "block";
+                    }
                     document.getElementById('reservationButton').onmouseover = function () {
                         this.style.background = '#333';
                     }
@@ -277,19 +396,41 @@
                 }
             }
 
-            function clearReservationDiv() {
-                if (reservationOpen) {
-                    document.getElementById('modalReservationDiv').style.display = "none";
-                    document.getElementById('reservationButton').style.background = "#555";
-                    document.getElementById('reservationButton').onmouseover = function () {
+            function clearCommentsDiv() {
+                if (commentsOpen) {
+                    document.getElementById('modalCommentsDiv').style.display = "none";
+                    document.getElementById('showCommentsButton').style.background = "#555";
+                    if (!reservationOpen && !leaveCommentOpen) {
+                        document.getElementById("modalRestaurantImage").style.display = "block";
+                    }
+                    document.getElementById('showCommentsButton').onmouseover = function () {
                         this.style.background = '#333';
                     }
-                    document.getElementById('reservationButton').onmouseleave = function () {
-                        if (!reservationOpen) {
+                    document.getElementById('showCommentsButton').onmouseleave = function () {
+                        if (!commentsOpen) {
                             this.style.background = '#555';
                         }
                     }
-                    reservationOpen = false;
+                    commentsOpen = false;
+                }
+            }
+
+            function clearLeaveCommentDiv() {
+                if (leaveCommentOpen) {
+                    document.getElementById('modalLeaveCommentDiv').style.display = "none";
+                    document.getElementById('showLeaveCommentButton').style.background = "#555";
+                    if (!reservationOpen && !commentsOpen) {
+                        document.getElementById("modalRestaurantImage").style.display = "block";
+                    }
+                    document.getElementById('showLeaveCommentButton').onmouseover = function () {
+                        this.style.background = '#333';
+                    }
+                    document.getElementById('showLeaveCommentButton').onmouseleave = function () {
+                        if (!leaveCommentOpen) {
+                            this.style.background = '#555';
+                        }
+                    }
+                    leaveCommentOpen = false;
                 }
             }
         </script>

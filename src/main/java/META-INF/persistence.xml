@@ -5,6 +5,7 @@
         <class>app.model.User</class>
         <class>app.model.Restaurant</class>
         <class>app.model.Reservation</class>
+        <class>app.model.Comment</class>
         <properties>
             <property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3306/reserve"/>
             <property name="toplink.jdbc.driver" value="com.mysql.jdbc.Driver"/>

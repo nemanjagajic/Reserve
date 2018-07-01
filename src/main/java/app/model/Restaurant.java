@@ -18,6 +18,7 @@ public class Restaurant {
     private String image;
     private Collection<Reservation> reservations;
     private User manager;
+    private Collection<Comment> comments;
 
     @Id
     @Column(name = "id")
@@ -176,5 +177,14 @@ public class Restaurant {
 
     public void setManager(User manager) {
         this.manager = manager;
+    }
+
+    @OneToMany(mappedBy = "restaurant")
+    public Collection<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Collection<Comment> comments) {
+        this.comments = comments;
     }
 }

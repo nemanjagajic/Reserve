@@ -17,6 +17,7 @@ public class User {
     private Collection<Reservation> reservations;
     private String image;
     private Collection<Restaurant> restaurants;
+    private Collection<Comment> comments;
 
     public User() {
         // Empty constructor
@@ -176,5 +177,14 @@ public class User {
 
     public void setRestaurants(Collection<Restaurant> restaurants) {
         this.restaurants = restaurants;
+    }
+
+    @OneToMany(mappedBy = "user")
+    public Collection<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Collection<Comment> comments) {
+        this.comments = comments;
     }
 }

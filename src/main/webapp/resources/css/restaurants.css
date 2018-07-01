@@ -34,7 +34,7 @@ h4 {
 
 .modal-form {
     font-size: 18px;
-    margin: 20px auto;
+    margin: 28px auto;
     display: block;
     width: 180px;
 }
@@ -343,6 +343,54 @@ h4 {
 
 #modalReservationDiv {
     display: none;
+}
+
+#modalCommentsDiv {
+    display: none;
+}
+
+#modalLeaveCommentDiv {
+    display: none;
+}
+
+.comments {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 400px;
+}
+
+.comment {
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    margin: 10px 15px;
+    padding: 5px;
+    font-size: 16px;
+}
+
+.user-commented {
+    text-align: right;
+    margin: 2px 7px 0 0;
+    color: #b3b3b3;
+}
+
+textarea {
+    display: block;
+    resize: none;
+    width: 90%;
+    height: 109px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    margin: 10px auto;
+    padding: 5px;
+    font-size: 16px;
+}
+
+textarea:focus {
+    outline: none;
+}
+
+.commented-restaurant {
+    font-size: 0;
 }
 
 /* ---------------------------------------- */

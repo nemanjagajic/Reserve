@@ -68,6 +68,7 @@
                         <div class="admin-buttons manager-button-line">
                             <a href=<c:url value="/reservation/getAllManagerTable"/>><button class="admin-panel-button">Reservations</button></a>
                             <a><button class="admin-panel-button">Menu</button></a>
+                            <a href=<c:url value="/getAllReservationsReport"/>><button class="admin-panel-button">Report</button></a>
                         </div>
                     </c:if>
             </c:if>

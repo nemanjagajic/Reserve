@@ -425,7 +425,7 @@ textarea:focus {
 
 .admin-buttons {
     margin: 0 auto 50px;
-    width: 623px;
+    width: 832px;
 }
 
 /* ---------- Modal ---------- */
@@ -640,5 +640,5 @@ textarea:focus {
 /* MANAGER PANEL */
 /* ---------------------------------------- */
 .manager-button-line {
-    width: 414px;
+    width: 623px;
 }

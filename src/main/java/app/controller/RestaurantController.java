@@ -87,6 +87,7 @@ public class RestaurantController {
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public String delete(HttpServletRequest request, RedirectAttributes ra) {
         reservationRepository.deleteAllByRestaurant(restaurantRepository.getById(Integer.parseInt(request.getParameter("restaurantId"))));
+        commentRepository.deleteAllByRestaurant(restaurantRepository.getById(Integer.parseInt(request.getParameter("restaurantId"))));
         restaurantRepository.delete(Integer.parseInt(request.getParameter("restaurantId")));
         List<Restaurant> restaurants = restaurantRepository.findAll();
         request.getSession().setAttribute("restaurants", restaurants);
